@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("https://cdn.travelisimo.com/tours/a05fecbe-824d-47e9-abab-5c8958a58547/laguna-brava-en-huehuetenango-guatemala.jpg?version=null");
+  background-size: cover; /* Escala la imagen para cubrir todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

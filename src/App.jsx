@@ -2,9 +2,10 @@ import { LoadingButton } from "@mui/lab";
 import { Box, Container, TextField, Typography } from "@mui/material";
 import { green } from "@mui/material/colors";
 import { useState } from "react";
+import { data } from "react-router-dom";
 
 const API_WEATHER =
-  "https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${city}";
+  "https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=";
 
 export default function App() {
   const [city, setCity] = useState("");
@@ -16,7 +17,7 @@ export default function App() {
   const [weather, setWeather] = useState({
     city: "",
     country: "",
-    temp: 0,
+    temp: "",
     condition: "",
     icon: "",
     conditinoText: "",
@@ -29,10 +30,19 @@ export default function App() {
 
     try {
       if (!city.trim()) throw { message: "City is required" };
-      const response = await fetch(API_WEATHER);
+      const response = await fetch(`${API_WEATHER}${city}`);
       const data = await response.json();
+      if (data.error) throw { message: data.error.message };
+
+      setWeather({
+        city: data.location.name,
+    country: data.location.country,
+    temp: data.current.temp_c,
+    condition: data.current.condition.text,
+    icon: data.current.condition.icon,
+    conditinoText: data.current.condition.text,
+  });
     } catch (error) {
-      console.error(error);
       setError({ error: true, message: error.message });
     } finally {
       setLoading(false);

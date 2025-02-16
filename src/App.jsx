@@ -21,7 +21,7 @@ export default function App() {
   });
 
   const onSubmit = async (e) => {
-    e.preventDefault(); // Corregido
+    e.preventDefault(); 
     setError({ error: false, message: "" });
     setLoading(true);
 
@@ -38,9 +38,9 @@ export default function App() {
       setWeather({
         city: data.location.name,
         country: data.location.country,
-        temperature: data.current.temperature, // Ajustado
-        icon: data.current.weather_icons[0], // Ajustado
-        conditionText: data.current.weather_descriptions[0], // Ajustado
+        temperature: data.current.temperature,
+        icon: data.current.weather_icons[0], 
+        conditionText: data.current.weather_descriptions[0], 
       });
     } catch (error) {
       setError({ error: true, message: error.message || "Something went wrong" });
